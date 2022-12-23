@@ -21,6 +21,8 @@ sheet += '**$pat**\n'
 sheet += '*Pat da Cat*\n\n'
 sheet += '**$rating**\n'
 sheet += '*Find out how epic gamer you are* \n\n'
+sheet += '**$cat**\n'
+sheet += '*Get a random image of a cat\n\n*'
 sheet += 'You can go to our website at: \n **https://sofiathecat.mightyspaceman.com/**'
 
 rickroll = ["https://www.youtube.com/watch?v=Uj1ykZWtPYI&list=PL3KnTfyhrIlcudeMemKd6rZFGDWyK23vx&index=3","https://www.youtube.com/watch?v=EE-xtCF3T94&list=PL3KnTfyhrIlcudeMemKd6rZFGDWyK23vx&index=3","https://www.youtube.com/watch?v=V-_O7nl0Ii0&list=PL3KnTfyhrIlcudeMemKd6rZFGDWyK23vx&index=4","https://www.youtube.com/watch?v=vkbQmH5MPME&list=PL3KnTfyhrIlcudeMemKd6rZFGDWyK23vx&index=5","https://www.youtube.com/watch?v=8O_ifyIIrN4&list=PL3KnTfyhrIlcudeMemKd6rZFGDWyK23vx&index=6","https://www.youtube.com/watch?v=ikFZLI4HLpQ&list=PL3KnTfyhrIlcudeMemKd6rZFGDWyK23vx&index=7","https://www.youtube.com/watch?v=0SoNH07Slj0&list=PL3KnTfyhrIlcudeMemKd6rZFGDWyK23vx&index=8","https://www.youtube.com/watch?v=xfr64zoBTAQ&list=PL3KnTfyhrIlcudeMemKd6rZFGDWyK23vx&index=9","https://www.youtube.com/watch?v=cqF6M25kqq4&list=PL3KnTfyhrIlcudeMemKd6rZFGDWyK23vx&index=10","https://www.youtube.com/watch?v=j5a0jTc9S10&list=PL3KnTfyhrIlcudeMemKd6rZFGDWyK23vx&index=11","https://www.youtube.com/watch?v=dPmZqsQNzGA&list=PL3KnTfyhrIlcudeMemKd6rZFGDWyK23vx&index=12","https://www.youtube.com/watch?v=ID_L0aGI9bg&list=PL3KnTfyhrIlcudeMemKd6rZFGDWyK23vx&index=13","https://www.youtube.com/watch?v=nHRbZW097Uk&list=PL3KnTfyhrIlcudeMemKd6rZFGDWyK23vx&index=15""https://www.youtube.com/watch?v=bIXm-Q-Xa4s&list=PLQcpjwveNrhLk4gB6c87VACB9mBS0ibas""https://www.youtube.com/watch?v=aqOoTQ-G-r4&list=PLQcpjwveNrhLk4gB6c87VACB9mBS0ibas&index=2""https://www.youtube.com/watch?v=4-kg9y5mq1M&list=PLQcpjwveNrhLk4gB6c87VACB9mBS0ibas&index=3"]
@@ -42,7 +44,7 @@ async def on_ready():
       await message.channel.send(random.choice(rickroll))
     
     if message.content.startswith('$pat'):
-      await message.channel.send('purr! purr! thank you for patting me, {}! \n {}'.format(message.author, requests.get('https://api.thecatapi.com/v1/images/search').json()[0]['url']))
+      await message.channel.send('purr! purr! thank you for patting me, {}! \n {}'.format(message.author, random.choice(cat)))
 
     if message.content.startswith('$cat'):
       await message.channel.send("kat\n", requests.get('https://api.thecatapi.com/v1/images/search').json()[0]['url'])
