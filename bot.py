@@ -6,9 +6,7 @@ import json
 
 client = discord.Client()
 
-
-
-my_secret = os.environ['TOKEN']
+token = "your token"
 
 sheet = 'current commands:\n'
 sheet += '**$hellosofia**\n'
@@ -21,14 +19,7 @@ sheet += '**$pat**\n'
 sheet += '*Pat da Cat*\n'
 sheet += '**$rating**\n'
 sheet += '*Find out how epic gamer you are* \n'
-sheet += '**$joke**\n'
-sheet += '*Get a randomly generated joke!*\n \n'
 sheet += 'You can go to our website at: \n **https://sofiathecat.mightyspaceman.com/**'
-
-
-oneto100 = ["1", "2", "3", "4", "5", "6", "7", "8", "9", "10", "11", "12", "13", "14", "15", "16", "17", "18", "19", "20", "21", "22", "23", "24", "25", "26", "27", "28", "29", "30", "40", "50", "51", "52", "53", "54", "55", "56", "57", "58", "59", "60", "61", "62", "63", "64", "65", "66", "67", "68", "69", "70", "71", "72", "73", "74", "75", "76", "77", "78", "79", "80", "81", "82", "83", "84", "85", "86", "87", "88", "89", "90", "91", "92", "93", "94", "95", "96", "97", "98", "99", "100"] 
-
-random_1_100 = random.choice(oneto100)
 
 rickroll = ["https://www.youtube.com/watch?v=Uj1ykZWtPYI&list=PL3KnTfyhrIlcudeMemKd6rZFGDWyK23vx&index=3","https://www.youtube.com/watch?v=EE-xtCF3T94&list=PL3KnTfyhrIlcudeMemKd6rZFGDWyK23vx&index=3","https://www.youtube.com/watch?v=V-_O7nl0Ii0&list=PL3KnTfyhrIlcudeMemKd6rZFGDWyK23vx&index=4","https://www.youtube.com/watch?v=vkbQmH5MPME&list=PL3KnTfyhrIlcudeMemKd6rZFGDWyK23vx&index=5","https://www.youtube.com/watch?v=8O_ifyIIrN4&list=PL3KnTfyhrIlcudeMemKd6rZFGDWyK23vx&index=6","https://www.youtube.com/watch?v=ikFZLI4HLpQ&list=PL3KnTfyhrIlcudeMemKd6rZFGDWyK23vx&index=7","https://www.youtube.com/watch?v=0SoNH07Slj0&list=PL3KnTfyhrIlcudeMemKd6rZFGDWyK23vx&index=8","https://www.youtube.com/watch?v=xfr64zoBTAQ&list=PL3KnTfyhrIlcudeMemKd6rZFGDWyK23vx&index=9","https://www.youtube.com/watch?v=cqF6M25kqq4&list=PL3KnTfyhrIlcudeMemKd6rZFGDWyK23vx&index=10","https://www.youtube.com/watch?v=j5a0jTc9S10&list=PL3KnTfyhrIlcudeMemKd6rZFGDWyK23vx&index=11","https://www.youtube.com/watch?v=dPmZqsQNzGA&list=PL3KnTfyhrIlcudeMemKd6rZFGDWyK23vx&index=12","https://www.youtube.com/watch?v=ID_L0aGI9bg&list=PL3KnTfyhrIlcudeMemKd6rZFGDWyK23vx&index=13","https://www.youtube.com/watch?v=nHRbZW097Uk&list=PL3KnTfyhrIlcudeMemKd6rZFGDWyK23vx&index=15""https://www.youtube.com/watch?v=bIXm-Q-Xa4s&list=PLQcpjwveNrhLk4gB6c87VACB9mBS0ibas""https://www.youtube.com/watch?v=aqOoTQ-G-r4&list=PLQcpjwveNrhLk4gB6c87VACB9mBS0ibas&index=2""https://www.youtube.com/watch?v=4-kg9y5mq1M&list=PLQcpjwveNrhLk4gB6c87VACB9mBS0ibas&index=3"]
 
@@ -56,22 +47,6 @@ async def on_ready():
     if message.content.startswith('$help'):
       await message.channel.send(sheet)
 
-    if message.content.startswith('$quote'):
-      try:
-		## making the get request
-		response = requests.get("https://quotegarden.herokuapp.com/api/v3/quotes/random")
-		if response.status_code == 200:
-			## extracting the core data
-			json_data = response.json()
-			data = json_data['data']
-
-			## getting the quote from the data
-			await message.channel.send(data[0]['quoteText'])
-		else:
-			await message.channel.send('error while getting quote')
-	except:
-		await message.channel.send("Something went wrong! Try Again!")
-
     if message.content.startswith('$purr'):
       await message.channel.send("purr! purr!")
 
@@ -86,21 +61,9 @@ async def on_ready():
 
 
     if message.content.startswith('$rating'):
-      await message.channel.send('*{}s gamer rating:* \n **{}%**'.format(message.author, random.choice(oneto100)))
-
-    if message.content.startswith('$joke'):
-        joke = joke_api.get_joke()
-        print(joke)
-
-        if joke == False:
-            await message.channel.send("Couldn't get joke from API. Try again later.")
-        else:
-            await message.channel.send(joke)
-
-        if message.content.startswith('$buttontest'):
-            await message.channel.send(catimg)
+      await message.channel.send('*{}s gamer rating:* \n **{}%**'.format(message.author, random.choice(1, 100)))
 
 
         
 
-client.run(my_secret)
+client.run(token)
